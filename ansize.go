@@ -20,7 +20,7 @@ const (
 	ANSI_COLOR_SPACE 	uint32 	= 6
 	ANSI_FOREGROUND 	string 	= "38"
 	ANSI_RESET 				string 	= "\x1b[0m"
-	CHARACTERS 				string 	= "01"
+	CHARACTER 				string 	= `░`
 	DEFAULT_WIDTH			int 		= 100
 	PROPORTION				float32 = 0.46
 	RGBA_COLOR_SPACE 	uint32 	= 1 << 16
@@ -52,7 +52,7 @@ func writeAnsiImage(img image.Image, file *os.File, width int) {
 				file.WriteString(current)
 			}
 			if (ANSI_RESET != current) {
-				char := string(CHARACTERS[rand.Int()%len(CHARACTERS)])
+				char := string(CHARACTER)
 				fmt.Print(char)
 				file.WriteString(char)
 			} else {
